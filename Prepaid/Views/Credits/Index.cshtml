@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Prepaid.Models.Credit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Our Credits</h2>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Create</td>
+            <td>Expire</td>
+            <td>Balance</td>
+            <td>User</td>
+            <td>Status</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.CreditNumber</td>
+            <td>@item.CreatedDate</td>
+            <td>@item.ExpireDate</td>
+            <td>@item.Balance$</td>
+            <td>
+                @if (item.User != null)
+                {
+                    <text>@item.User.FullName</text>
+                }
+                else
+                {
+                    <text>No User</text>
+                }
+            </td>
+            <td>
+                @if (item.IsAvaliable && item.ExpireDate > DateTime.Now)
+                {
+                    <span class="label label-success"> Available</span>
+                }
+                else if (item.IsAvaliable && item.ExpireDate < DateTime.Now)
+                {
+                    <span class="label label-warning"> Expired</span>
+                }
+                else
+                {
+                    <span class="label label-danger"> Paid</span>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

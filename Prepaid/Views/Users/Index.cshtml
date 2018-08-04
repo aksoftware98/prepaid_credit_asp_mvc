@@ -1,0 +1,14 @@
+﻿@model Prepaid.Models.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-lg-4">
+        <h2>Name: @Model.FullName</h2>
+        <h2>Phone: @Model.PhoneNumber</h2>
+        <h2>Balance: @Model.Balance$</h2>
+        <a href="@Url.Action("Charge", new { id = Model.UserId})" class="btn btn-primary btn-block">Charge Your Balance</a>
+    </div>
+</div>
